@@ -22,6 +22,15 @@ module "frontend_subnet" {
   address_prefixes     = ["10.0.1.0/24"]
 }
 
+module "frontend_suresh" {
+  depends_on           = [module.virtual_network]
+  source               = "../modules/azurerm_subnet"
+  subnet_name          = "frontend-suresh"
+  resource_group_name  = "suresh-rg"
+  virtual_network_name = "suresh-vnet"
+  address_prefixes     = ["10.0.1.0/24"]
+}
+
 module "backend_subnet" {
   depends_on           = [module.virtual_network]
   source               = "../modules/azurerm_subnet"
