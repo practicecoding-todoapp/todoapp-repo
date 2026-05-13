@@ -11,6 +11,7 @@ module "resource_group3" {
   resource_group_name     = "todoapp-rg3"
   resource_group_location = "canadacentral"
 }
+
 module "resource_group1" {
   source                  = "../modules/azurerm_resource_group"
   resource_group_name     = "todoapp-rg1"
