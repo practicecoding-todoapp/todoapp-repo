@@ -4,6 +4,21 @@ module "resource_group" {
   resource_group_location = "centralindia"
 }
 
+
+
+module "resource_group3" {
+  source                  = "../modules/azurerm_resource_group"
+  resource_group_name     = "todoapp-rg3"
+  resource_group_location = "canadacentral"
+}
+
+module "resource_group1" {
+  source                  = "../modules/azurerm_resource_group"
+  resource_group_name     = "todoapp-rg1"
+  resource_group_location = "centralindia"
+
+}
+
 module "virtual_network" {
   depends_on               = [module.resource_group]
   source                   = "../modules/azurerm_virtual_network"
@@ -20,6 +35,15 @@ module "frontend_subnet" {
   resource_group_name  = "todoapp-rg"
   virtual_network_name = "todoapp-vnet"
   address_prefixes     = ["10.0.1.0/24"]
+}
+
+module "frontend_rakesh" {
+  depends_on           = [module.virtual_network]
+  source               = "../modules/azurerm_subnet"
+  subnet_name          = "frontend-rakesh"
+  resource_group_name  = "trakesh-rg"
+  virtual_network_name = "rakesh-vnet"
+  address_prefixes     = ["10.0.7.0/24"]
 }
 
 module "backend_subnet" {
